@@ -1,0 +1,24 @@
+-- create a table
+CREATE TABLE employee (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  mgr_id INTEGER  NULL
+);
+-- insert some values
+INSERT INTO employee VALUES (1, 'Sachin', 4 );
+INSERT INTO employee VALUES (2, 'Saurav', null );
+INSERT INTO employee VALUES (3, 'Rahul', 1 );
+INSERT INTO employee VALUES (4, 'Dhoni', 0  );
+INSERT INTO employee VALUES (0, 'Kohli', null  );
+-- fetch some values
+
+WITH org_hierarchy(id, name, mgr_id) 
+AS 
+(
+
+select emp.id, emp.name , emp.mgr_id from employee emp where emp.name = 'Rahul'
+union
+select e1.id, e1.name, e1.mgr_id from  employee e1 join org_hierarchy e on e.mgr_id = e1.id
+
+)
+select name  from org_hierarchy;
