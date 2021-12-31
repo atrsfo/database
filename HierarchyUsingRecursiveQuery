@@ -17,7 +17,7 @@ AS
 (
 
 select emp.id, emp.name , emp.mgr_id from employee emp where emp.name = 'Rahul'
-union
+union all
 select e1.id, e1.name, e1.mgr_id from  employee e1 join org_hierarchy e on e.mgr_id = e1.id
 
 )
